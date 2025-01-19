@@ -36,6 +36,10 @@
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
+
+        <!--    管理 common 依赖的版本    -->
+        <common.version>0.0.1-SNAPSHOT</common.version>
+
     </properties>
 
     <dependencyManagement>
@@ -47,6 +51,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--    管理 common 依赖    -->
+            <dependency>
+                <groupId>com.xenon</groupId>
+                <artifactId>common</artifactId>
+                <version>${common.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

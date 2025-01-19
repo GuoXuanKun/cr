@@ -45,6 +45,12 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!--    引入 common 依赖    -->
+        <dependency>
+            <groupId>com.xenon</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
