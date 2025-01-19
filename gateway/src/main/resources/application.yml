@@ -1,2 +1,20 @@
 server:
-  port: 8000
+  port: 8000  # 配置网关服务的端口号为 8000，应用程序将监听此端口。
+
+spring:
+  cloud:
+    gateway: # Spring Cloud Gateway 的配置。
+      routes: # 定义网关的路由规则列表。
+        - id: user  # 定义路由的唯一标识符，用于标识这条路由规则。
+          predicates: # 路由的断言规则，用于匹配请求。
+            - Path=/user/**  # 如果请求路径匹配 /user/**，则会触发这条路由。
+            # ** 表示通配符，可以匹配多级路径，例如 /user/profile 或 /user/details。
+          filters: # 过滤器，用于修改请求或响应的规则。
+            - StripPrefix=1  # 去掉请求路径的第一个路径前缀部分。
+            # 示例：
+            # 请求路径 /user/profile 在转发到目标服务时会变为 /profile。
+          uri: http://localhost:8081  # 路由的目标服务地址。
+          # 这里配置了目标服务的地址为 http://localhost:8001。
+          # 请求会被转发到运行在 8001 端口的服务上。
+
+
