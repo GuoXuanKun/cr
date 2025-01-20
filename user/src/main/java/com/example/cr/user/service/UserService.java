@@ -10,7 +10,7 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
     public long count() {
-        return userMapper.count();
+        return userMapper.countByExample(null);
     }
 
 }
