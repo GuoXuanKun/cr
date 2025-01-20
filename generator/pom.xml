@@ -36,6 +36,15 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <!--      不需要被编译成可执行 jar 包      -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
