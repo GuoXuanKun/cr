@@ -12,8 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -57,7 +56,8 @@ public class UserControllerTest {
         }
         mockMvc.perform(get("/count"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(String.valueOf(expected)));
+//                .andExpect(content().string(String.valueOf(expected)));
+                .andExpect(jsonPath("$.data").value(expected));
     }
 }
 
