@@ -1,5 +1,6 @@
 package com.example.cr.user.service;
 
+import com.example.cr.common.exception.UserAlreadyExistsException;
 import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.entity.UserExample;
@@ -32,7 +33,7 @@ public class UserService {
         example.createCriteria().andMobileEqualTo(mobile);
         List<User> users = userMapper.selectByExample(example);
         if (!users.isEmpty()) {
-            throw new RuntimeException("手机号已经注册");
+            throw new UserAlreadyExistsException("手机号已经注册");
         }
 
         User user = new User();

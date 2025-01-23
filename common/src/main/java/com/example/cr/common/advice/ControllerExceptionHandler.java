@@ -1,5 +1,6 @@
 package com.example.cr.common.advice;
 
+import com.example.cr.common.exception.CustomException;
 import com.example.cr.common.response.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,20 @@ public class ControllerExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public R<Object> exceptionHandler(Exception e) {
         log.error("Exception: {}", e.getMessage());
+        return R.fail(HttpStatus.INTERNAL_SERVER_ERROR.value(),"系统异常");
+    }
+
+    /**
+     * 捕捉到自定义异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = CustomException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public R<Object> customExceptionHandler(Exception e) {
+        log.error("CustomException: {}", e.getMessage());
         return R.fail(e.getMessage());
     }
+
 }
