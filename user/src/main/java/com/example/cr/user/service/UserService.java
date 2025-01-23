@@ -1,5 +1,6 @@
 package com.example.cr.user.service;
 
+import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.entity.UserExample;
 import com.example.cr.user.mapper.UserMapper;
@@ -19,10 +20,12 @@ public class UserService {
 
     /**
      * 用户注册
-     * @param mobile
+     * @param userDTO
      * @return
      */
-    public int register(String mobile){
+    public int register(UserDTO userDTO){
+
+        String mobile = userDTO.getMobile();
 
         // 校验手机号是否已经注册
         UserExample example = new UserExample();
