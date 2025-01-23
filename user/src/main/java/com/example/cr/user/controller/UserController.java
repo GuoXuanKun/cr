@@ -1,6 +1,6 @@
 package com.example.cr.user.controller;
 
-import com.example.cr.common.response.Result;
+import com.example.cr.common.response.R;
 import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +19,9 @@ public class UserController {
      * @return
      */
     @GetMapping("/count")
-    public Result<Long> count() {
+    public R<Long> count() {
         long count = userService.count();
-        return Result.ok(count);
+        return R.ok(count);
     }
 
     /**
@@ -30,10 +30,10 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public Result<Integer> register(UserDTO userDTO) {
+    public R<Integer> register(UserDTO userDTO) {
         int result = userService.register(userDTO);
 //        return new Result<>(200, "OK", result);
-        return Result.ok(result);
+        return R.ok(result);
     }
 
 }
