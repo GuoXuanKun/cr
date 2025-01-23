@@ -46,9 +46,10 @@ public class LogAspect {
             result = joinPoint.proceed();
             return result;
         } catch (Throwable throwable) {
-            logger.error("Exception in {}.{}() with cause = {}",
+            logger.error("Exception in {}.{}() with message = {} with cause = {}",
                 joinPoint.getSignature().getDeclaringTypeName(),
                 joinPoint.getSignature().getName(),
+                throwable.getMessage(),
                 throwable.getCause() != null ? throwable.getCause() : "NULL");
             throw throwable;
         } finally {
