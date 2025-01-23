@@ -1,6 +1,9 @@
 ### test 接口
 GET http://localhost:8081/test
 
+### 测试 查询用户数量
+GET http://localhost:8081/count
+
 ### 测试 用户注册
 POST http://localhost:8081/register
 Content-Type: application/x-www-form-urlencoded
