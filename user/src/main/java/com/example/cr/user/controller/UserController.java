@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("/count")
     public Result<Long> count() {
         long count = userService.count();
-        return new Result<>(200, "OK", count);
+        return Result.ok(count);
     }
 
     /**
@@ -32,7 +32,8 @@ public class UserController {
     @PostMapping("/register")
     public Result<Integer> register(UserDTO userDTO) {
         int result = userService.register(userDTO);
-        return new Result<>(200, "OK", result);
+//        return new Result<>(200, "OK", result);
+        return Result.ok(result);
     }
 
 }

@@ -11,6 +11,10 @@ public class Result<T> {
         this.data = data;
     }
 
+    public static <T> Result<T> ok(T data) {
+        return new Result<>(200, "OK", data);
+    }
+
     public Integer getCode() {
         return code;
     }
