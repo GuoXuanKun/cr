@@ -29,7 +29,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public R<Integer> register(@Valid UserDTO userDTO) {
+    public R<Integer> register(@Valid @RequestBody UserDTO userDTO) {
         int result = userService.register(userDTO);
 //        return new Result<>(200, "OK", result);
         return R.ok(result);

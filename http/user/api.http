@@ -6,6 +6,8 @@ GET http://localhost:8081/count
 
 ### 测试 用户注册
 POST http://localhost:8081/register
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-mobile = 18912345679
+{
+  "mobile": "18912345670"
+}
