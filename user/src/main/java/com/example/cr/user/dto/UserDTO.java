@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class UserDTO {
 
-    @NotBlank
+    @NotBlank(message = "手机号不能为空")
     private String mobile;
 
     public String getMobile() {
