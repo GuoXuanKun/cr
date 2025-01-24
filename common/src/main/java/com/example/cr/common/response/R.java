@@ -32,6 +32,10 @@ public class R<T> {
         return new R<>(code, msg, null);
     }
 
+    public static <T> R<T> failValid(String msg) {
+        return new R<>(HttpStatus.UNPROCESSABLE_ENTITY.value(), msg, null);
+    }
+
     public Integer getCode() {
         return code;
     }

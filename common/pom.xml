@@ -27,10 +27,16 @@
             <artifactId>spring-cloud-starter</artifactId>
         </dependency>
 
-        <!--  aop依赖  -->
+        <!--  aop 依赖  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!--    参数校验框架 依赖    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
     </dependencies>

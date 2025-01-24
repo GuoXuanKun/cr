@@ -1,6 +1,10 @@
 package com.example.cr.user.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class UserDTO {
+
+    @NotBlank
     private String mobile;
 
     public String getMobile() {

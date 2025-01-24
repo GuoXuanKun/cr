@@ -5,10 +5,13 @@ import com.example.cr.common.response.R;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ControllerExceptionHandler {
@@ -28,9 +31,9 @@ public class ControllerExceptionHandler {
     }
 
     /**
-     * 捕捉到自定义异常
-     * @param e
-     * @return
+     * 捕捉到 CustomException 自定义异常的统一处理
+     * @param e 异常
+     * @return R 统一返回结果
      */
     @ExceptionHandler(value = CustomException.class)
     @ResponseBody
@@ -38,6 +41,23 @@ public class ControllerExceptionHandler {
     public R<Object> customExceptionHandler(Exception e) {
         log.error("CustomException: {}", e.getMessage());
         return R.fail(e.getMessage());
+    }
+
+    /**
+     * 捕捉到 Spring 框架 BindException 校验异常的统一处理
+     * @param e 异常
+     * @return R 统一返回结果
+     */
+    @ExceptionHandler(value = BindException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public R<Object> bindExceptionHandler(BindException e) {
+        String errorMessage = e.getBindingResult().getFieldErrors().stream()
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.joining("; "));
+
+        log.error("BindException: {}", errorMessage);
+        return R.failValid(errorMessage);
     }
 
 }

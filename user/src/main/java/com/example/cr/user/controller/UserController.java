@@ -3,10 +3,9 @@ package com.example.cr.user.controller;
 import com.example.cr.common.response.R;
 import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -30,7 +29,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public R<Integer> register(UserDTO userDTO) {
+    public R<Integer> register(@Valid UserDTO userDTO) {
         int result = userService.register(userDTO);
 //        return new Result<>(200, "OK", result);
         return R.ok(result);
