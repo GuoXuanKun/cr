@@ -1,4 +1,12 @@
 <script setup>
+import { ref } from 'vue'
+import { ElMessage } from 'element-plus'
+
+const mobile = ref('');
+
+const handleLogin = () => {
+  console.log('用户输入手机号: ' + mobile.value);
+}
 </script>
 
 <template>
@@ -12,6 +20,7 @@
       <el-form class="login-form">
         <el-form-item>
           <el-input
+            v-model="mobile"
             placeholder="18012345678"
             maxlength="11"
             :clearable="true"
@@ -37,6 +46,7 @@
           <el-button
             type="primary"
             class="login-btn"
+            @click="handleLogin"
           >
             登录
           </el-button>
