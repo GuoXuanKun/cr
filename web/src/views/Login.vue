@@ -2,10 +2,29 @@
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 
-const mobile = ref('');
+const mobile = ref('')
+const code = ref('')
+
+const handleGetCode = () => {
+  if (!mobile.value || mobile.value.length !== 11) {
+    ElMessage.error('请输入正确的手机号')
+    return
+  }
+  ElMessage.success('验证码已发送')
+}
 
 const handleLogin = () => {
-  console.log('用户输入手机号: ' + mobile.value);
+  if (!mobile.value || mobile.value.length !== 11) {
+    ElMessage.error('请输入正确的手机号')
+    return
+  }
+  if (!code.value || code.value.length < 4) {
+    ElMessage.error('请输入有效的验证码')
+    return
+  }
+
+  console.log('用户输入的手机号:', mobile.value)
+  console.log('用户输入的验证码:', code.value)
 }
 </script>
 
@@ -30,12 +49,14 @@ const handleLogin = () => {
         <el-form-item>
           <div class="verification-code">
             <el-input
+              v-model="code"
               placeholder="请输入验证码"
               class="code-input"
             />
             <el-button
               type="primary"
               class="get-code-btn"
+              @click="handleGetCode"
             >
               获取验证码
             </el-button>
@@ -57,7 +78,6 @@ const handleLogin = () => {
 </template>
 
 <style scoped>
-
 .login-container {
   height: 100vh;
   display: flex;
