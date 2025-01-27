@@ -94,6 +94,15 @@ public class UserService {
         1. 会涉及隐私的问题，比如密码字段
         2. 会涉及到很多不必要的字段，比如数据库中的创建时间、更新时间、额外标记字段等等
         3. 还会涉及到有些字段并不是 User 这个实体的字段，比如 token 等
+
+        以上问题的解决方法类似之前引入的 DTO，除了 DTO 可能还会遇到 VO、BO、PO、DO、Entity、POJO 等各种词汇
+            参考：https://www.cnblogs.com/east7/p/15057400.html
+            这篇文章说的也不是标准答案，国内外描述也不一定一致
+
+            为了避免记忆一大堆名词，除了 Entity，我们只用两个额外的概念去封装系统的需求：
+            1. request 封装从「前端」发送到「后端」的数据
+            2. response 封装从「后端」返回给「前端」的数据
+
          */
     public User login(LoginDTO dto) {
 
