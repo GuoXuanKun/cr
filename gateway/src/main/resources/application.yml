@@ -3,18 +3,35 @@ server:
 
 spring:
   cloud:
-    gateway: # Spring Cloud Gateway 的配置。
-      routes: # 定义网关的路由规则列表。
-        - id: user  # 定义路由的唯一标识符，用于标识这条路由规则。
-          predicates: # 路由的断言规则，用于匹配请求。
-            - Path=/user/**  # 如果请求路径匹配 /user/**，则会触发这条路由。
+    gateway: # Spring Cloud Gateway 的配置，提供一个基于 Java 的高效网关框架。
+      globalcors: # 全局 CORS（跨域资源共享）配置，允许指定的跨域请求。
+        corsConfigurations:
+          '[/**]': # 匹配所有路径的跨域配置规则。
+            allowedOrigins: "http://localhost:5173" # 允许的跨域请求来源，通常为前端的地址。
+            allowedMethods: # 允许的 HTTP 请求方法列表。
+              - GET       # 允许 GET 请求。
+              - POST      # 允许 POST 请求。
+              - PUT       # 允许 PUT 请求。
+              - DELETE    # 允许 DELETE 请求。
+              - OPTIONS   # 允许 OPTIONS 请求（常用于预检请求）。
+            allowedHeaders: "*" # 允许的请求头，"*" 表示允许所有请求头。
+            allowCredentials: true # 是否允许跨域请求携带凭据（如 Cookie）。
+            maxAge: 3600 # 预检请求的有效时间（秒）。在此时间内，浏览器不再发起预检请求。
+
+      routes: # 定义网关的路由规则列表，每一条规则对应一个服务或具体的转发逻辑。
+        - id: user  # 定义路由的唯一标识符，用于区分不同的路由规则。
+          predicates: # 路由的断言规则，用于匹配请求是否适配这条路由。
+            - Path=/user/** # 匹配路径以 /user/ 开头的请求。
             # ** 表示通配符，可以匹配多级路径，例如 /user/profile 或 /user/details。
           filters: # 过滤器，用于修改请求或响应的规则。
-            - StripPrefix=1  # 去掉请求路径的第一个路径前缀部分。
-            # 示例：
+            - StripPrefix=1 # 移除请求路径中的第一个路径前缀部分。
+            # 例如：
             # 请求路径 /user/profile 在转发到目标服务时会变为 /profile。
-          uri: http://localhost:8081  # 路由的目标服务地址。
-          # 这里配置了目标服务的地址为 http://localhost:8001。
-          # 请求会被转发到运行在 8001 端口的服务上。
+          uri: http://localhost:8081 # 路由规则的目标服务地址。
+          # 请求会被转发到运行在 8081 端口的服务上（通常为微服务的地址）。
 
-
+# 配置总结：
+# - 该配置实现了一个网关服务，监听 8000 端口。
+# - 设置了全局跨域规则，允许从指定来源（http://localhost:5173）的跨域请求。
+# - 定义了一条路由规则，将匹配路径 /user/** 的请求转发到 8081 端口的服务。
+# - 使用过滤器 StripPrefix=1，去掉转发时的第一级路径前缀。
