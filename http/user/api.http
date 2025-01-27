@@ -21,3 +21,41 @@ Accept-Language: en
 {
   "mobile": "15980768901"
 }
+
+### 测试 用户登录 - 用户不存在
+POST http://localhost:8081/login
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "mobile": "15980768900"
+}
+
+### 测试 用户登录 - 用户不存在 - 发送验证码
+POST http://localhost:8081/send-code
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "mobile": "15980768900"
+}
+
+### 测试 用户登录 - 验证码错误
+POST http://localhost:8081/login
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "mobile": "15980768900",
+  "code": "1234"
+}
+
+### 测试 用户登录 - 验证码正确
+POST http://localhost:8081/login
+Content-Type: application/json
+Accept-Language: en
+
+{
+  "mobile": "15980768900",
+  "code": "6666"
+}
