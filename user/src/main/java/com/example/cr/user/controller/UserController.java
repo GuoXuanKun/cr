@@ -28,25 +28,25 @@ public class UserController {
 
     /**
      * 用户注册
-     * @param userDTO
+     * @param request
      * @return
      */
     @PostMapping("/register")
-    public R<Integer> register(@Valid @RequestBody UserRequest userDTO) {
-        int result = userService.register(userDTO);
+    public R<Integer> register(@Valid @RequestBody UserRequest request) {
+        int result = userService.register(request);
 //        return new Result<>(200, "OK", result);
         return R.ok(result);
     }
 
     @PostMapping("/send-code")
-    public R<String> sendCode(@Valid @RequestBody SendCodeRequest dto) {
-        userService.sendCode(dto);
+    public R<String> sendCode(@Valid @RequestBody SendCodeRequest request) {
+        userService.sendCode(request);
         return R.ok();
     }
 
     @PostMapping("/login")
-    public R<LoginResponse> login(@Valid @RequestBody LoginRequest dto) {
-        LoginResponse user = userService.login(dto);
+    public R<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        LoginResponse user = userService.login(request);
         return R.ok(user);
     }
 

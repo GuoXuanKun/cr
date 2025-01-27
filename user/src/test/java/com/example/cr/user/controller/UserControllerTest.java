@@ -75,10 +75,10 @@ public class UserControllerTest {
     @Test
     void sendCode_shouldSendVerificationCode() throws Exception {
         // Arrange
-        UserRequest userDTO = new UserRequest();
+        UserRequest request = new UserRequest();
         String mobile = "18812345678";
-        userDTO.setMobile(mobile);
-        String content = objectMapper.writeValueAsString(userDTO);
+        request.setMobile(mobile);
+        String content = objectMapper.writeValueAsString(request);
 
         // Act & Assert
         mockMvc.perform(post("/send-code")

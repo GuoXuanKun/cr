@@ -31,12 +31,12 @@ public class UserService {
     /**
      * 用户注册
      *
-     * @param userDTO
+     * @param request
      * @return
      */
-    public int register(UserRequest userDTO) {
+    public int register(UserRequest request) {
 
-        String mobile = userDTO.getMobile();
+        String mobile = request.getMobile();
 
         // 校验手机号是否已经注册
         UserExample example = new UserExample();
@@ -52,10 +52,10 @@ public class UserService {
         return userMapper.insert(user);
     }
 
-    public void sendCode(SendCodeRequest dto) {
+    public void sendCode(SendCodeRequest request) {
 
         // 获取到手机号
-        String mobile = dto.getMobile();
+        String mobile = request.getMobile();
 
         // 校验手机号是否已经注册
         UserExample example = new UserExample();
@@ -103,10 +103,10 @@ public class UserService {
             2. response 封装从「后端」返回给「前端」的数据
 
          */
-    public LoginResponse login(LoginRequest dto) {
+    public LoginResponse login(LoginRequest request) {
 
-        String mobile = dto.getMobile();
-        String code = dto.getCode();
+        String mobile = request.getMobile();
+        String code = request.getCode();
 
         UserExample userExample = new UserExample();
         userExample.createCriteria().andMobileEqualTo(mobile);
