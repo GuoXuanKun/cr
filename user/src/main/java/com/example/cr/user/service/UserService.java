@@ -12,6 +12,7 @@ import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.entity.UserExample;
 import com.example.cr.user.mapper.UserMapper;
+import com.example.cr.user.response.LoginResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -90,7 +91,7 @@ public class UserService {
     }
 
     /*
-        暂时先直接返回 User，但是你得知道不应该把用户所有的信息全部返回出去，因为：
+        (已替换成 LoginResponse) 暂时先直接返回 User，但是你得知道不应该把用户所有的信息全部返回出去，因为：
         1. 会涉及隐私的问题，比如密码字段
         2. 会涉及到很多不必要的字段，比如数据库中的创建时间、更新时间、额外标记字段等等
         3. 还会涉及到有些字段并不是 User 这个实体的字段，比如 token 等
@@ -104,7 +105,7 @@ public class UserService {
             2. response 封装从「后端」返回给「前端」的数据
 
          */
-    public User login(LoginDTO dto) {
+    public LoginResponse login(LoginDTO dto) {
 
         String mobile = dto.getMobile();
         String code = dto.getCode();
@@ -123,6 +124,11 @@ public class UserService {
             throw new CommonBusinessException("验证码错误");
         }
 
-        return users.get(0);
+        User user = users.get(0);
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setId(user.getId());
+        loginResponse.setMobile(user.getMobile());
+        return loginResponse;
+
     }
 }

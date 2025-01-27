@@ -5,6 +5,7 @@ import com.example.cr.user.dto.LoginDTO;
 import com.example.cr.user.dto.SendCodeDTO;
 import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.entity.User;
+import com.example.cr.user.response.LoginResponse;
 import com.example.cr.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public R<Object> login(@Valid @RequestBody LoginDTO dto) {
-        User user = userService.login(dto);
+    public R<LoginResponse> login(@Valid @RequestBody LoginDTO dto) {
+        LoginResponse user = userService.login(dto);
         return R.ok(user);
     }
 
