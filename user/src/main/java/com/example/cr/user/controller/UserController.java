@@ -1,6 +1,7 @@
 package com.example.cr.user.controller;
 
 import com.example.cr.common.response.R;
+import com.example.cr.user.dto.SendCodeDTO;
 import com.example.cr.user.dto.UserDTO;
 import com.example.cr.user.service.UserService;
 import jakarta.validation.Valid;
@@ -33,6 +34,12 @@ public class UserController {
         int result = userService.register(userDTO);
 //        return new Result<>(200, "OK", result);
         return R.ok(result);
+    }
+
+    @PostMapping("/send-code")
+    public R<String> sendCode(@Valid @RequestBody SendCodeDTO dto) {
+        userService.sendCode(dto);
+        return R.ok();
     }
 
 }
