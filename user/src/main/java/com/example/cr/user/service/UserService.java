@@ -72,7 +72,8 @@ public class UserService {
         }
 
         // 生成验证码( 4 位数)
-        String code = RandomUtil.randomString(4);
+//        String code = RandomUtil.randomString(4);
+        String code = "6666";
         log.info("生成验证码, 验证码:{}, 手机号:{}",code, mobile);
 
         // 验证码保存到验证码历史记录表
