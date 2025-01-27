@@ -1,4 +1,4 @@
-package com.example.cr.user.dto;
+package com.example.cr.user.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

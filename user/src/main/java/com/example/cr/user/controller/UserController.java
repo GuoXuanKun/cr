@@ -1,10 +1,9 @@
 package com.example.cr.user.controller;
 
 import com.example.cr.common.response.R;
-import com.example.cr.user.dto.LoginDTO;
-import com.example.cr.user.dto.SendCodeDTO;
-import com.example.cr.user.dto.UserDTO;
-import com.example.cr.user.entity.User;
+import com.example.cr.user.request.LoginDTO;
+import com.example.cr.user.request.SendCodeDTO;
+import com.example.cr.user.request.UserDTO;
 import com.example.cr.user.response.LoginResponse;
 import com.example.cr.user.service.UserService;
 import jakarta.validation.Valid;

@@ -1,14 +1,12 @@
 package com.example.cr.user.service;
 
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.RandomUtil;
 import com.example.cr.common.exception.CommonBusinessException;
 import com.example.cr.common.exception.UserAlreadyExistsException;
 import com.example.cr.common.exception.UserNotExistsException;
 import com.example.cr.common.utils.SnowflakeUtil;
-import com.example.cr.user.dto.LoginDTO;
-import com.example.cr.user.dto.SendCodeDTO;
-import com.example.cr.user.dto.UserDTO;
+import com.example.cr.user.request.LoginDTO;
+import com.example.cr.user.request.SendCodeDTO;
+import com.example.cr.user.request.UserDTO;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.entity.UserExample;
 import com.example.cr.user.mapper.UserMapper;

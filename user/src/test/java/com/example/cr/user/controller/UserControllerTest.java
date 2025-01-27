@@ -1,6 +1,6 @@
 package com.example.cr.user.controller;
 
-import com.example.cr.user.dto.UserDTO;
+import com.example.cr.user.request.UserDTO;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.mapper.UserMapper;
 import com.example.cr.user.service.UserService;
