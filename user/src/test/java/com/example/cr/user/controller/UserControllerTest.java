@@ -1,6 +1,6 @@
 package com.example.cr.user.controller;
 
-import com.example.cr.user.request.UserDTO;
+import com.example.cr.user.request.UserRequest;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.mapper.UserMapper;
 import com.example.cr.user.service.UserService;
@@ -75,7 +75,7 @@ public class UserControllerTest {
     @Test
     void sendCode_shouldSendVerificationCode() throws Exception {
         // Arrange
-        UserDTO userDTO = new UserDTO();
+        UserRequest userDTO = new UserRequest();
         String mobile = "18812345678";
         userDTO.setMobile(mobile);
         String content = objectMapper.writeValueAsString(userDTO);

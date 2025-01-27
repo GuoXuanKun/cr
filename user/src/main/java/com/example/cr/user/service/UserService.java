@@ -4,9 +4,9 @@ import com.example.cr.common.exception.CommonBusinessException;
 import com.example.cr.common.exception.UserAlreadyExistsException;
 import com.example.cr.common.exception.UserNotExistsException;
 import com.example.cr.common.utils.SnowflakeUtil;
-import com.example.cr.user.request.LoginDTO;
-import com.example.cr.user.request.SendCodeDTO;
-import com.example.cr.user.request.UserDTO;
+import com.example.cr.user.request.LoginRequest;
+import com.example.cr.user.request.SendCodeRequest;
+import com.example.cr.user.request.UserRequest;
 import com.example.cr.user.entity.User;
 import com.example.cr.user.entity.UserExample;
 import com.example.cr.user.mapper.UserMapper;
@@ -34,7 +34,7 @@ public class UserService {
      * @param userDTO
      * @return
      */
-    public int register(UserDTO userDTO) {
+    public int register(UserRequest userDTO) {
 
         String mobile = userDTO.getMobile();
 
@@ -52,7 +52,7 @@ public class UserService {
         return userMapper.insert(user);
     }
 
-    public void sendCode(SendCodeDTO dto) {
+    public void sendCode(SendCodeRequest dto) {
 
         // 获取到手机号
         String mobile = dto.getMobile();
@@ -103,7 +103,7 @@ public class UserService {
             2. response 封装从「后端」返回给「前端」的数据
 
          */
-    public LoginResponse login(LoginDTO dto) {
+    public LoginResponse login(LoginRequest dto) {
 
         String mobile = dto.getMobile();
         String code = dto.getCode();

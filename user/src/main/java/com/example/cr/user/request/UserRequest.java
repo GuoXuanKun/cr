@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class UserDTO {
+public class UserRequest {
 
     @NotBlank(message = "手机号不能为空")
     @Size(min = 11, max = 11, message = "手机号长度必须为11位")

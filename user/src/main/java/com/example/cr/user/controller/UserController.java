@@ -1,9 +1,9 @@
 package com.example.cr.user.controller;
 
 import com.example.cr.common.response.R;
-import com.example.cr.user.request.LoginDTO;
-import com.example.cr.user.request.SendCodeDTO;
-import com.example.cr.user.request.UserDTO;
+import com.example.cr.user.request.LoginRequest;
+import com.example.cr.user.request.SendCodeRequest;
+import com.example.cr.user.request.UserRequest;
 import com.example.cr.user.response.LoginResponse;
 import com.example.cr.user.service.UserService;
 import jakarta.validation.Valid;
@@ -32,20 +32,20 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public R<Integer> register(@Valid @RequestBody UserDTO userDTO) {
+    public R<Integer> register(@Valid @RequestBody UserRequest userDTO) {
         int result = userService.register(userDTO);
 //        return new Result<>(200, "OK", result);
         return R.ok(result);
     }
 
     @PostMapping("/send-code")
-    public R<String> sendCode(@Valid @RequestBody SendCodeDTO dto) {
+    public R<String> sendCode(@Valid @RequestBody SendCodeRequest dto) {
         userService.sendCode(dto);
         return R.ok();
     }
 
     @PostMapping("/login")
-    public R<LoginResponse> login(@Valid @RequestBody LoginDTO dto) {
+    public R<LoginResponse> login(@Valid @RequestBody LoginRequest dto) {
         LoginResponse user = userService.login(dto);
         return R.ok(user);
     }
