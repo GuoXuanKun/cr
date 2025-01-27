@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import {ref} from 'vue'
+import {ElMessage} from 'element-plus'
+
+import {sendCode} from '@/api/auth'
 
 const mobile = ref('')
 const code = ref('')
@@ -10,7 +12,15 @@ const handleGetCode = () => {
     ElMessage.error('请输入正确的手机号')
     return
   }
-  ElMessage.success('验证码已发送')
+  // ElMessage.success('验证码已发送')
+  sendCode(mobile.value)
+    .then(res => {
+      console.log(res)
+      ElMessage.success('验证码已发送')
+    })
+    .catch(error => {
+      ElMessage.error(error.response?.data?.msg || '发送验证码失败')
+    })
 }
 
 const handleLogin = () => {
