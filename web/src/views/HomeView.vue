@@ -1,4 +1,11 @@
 <script setup>
+import {useUserStore} from '@/stores/user'
+
+const userStore = useUserStore()
+
+console.log(userStore.id)
+console.log(userStore.mobile)
+console.log(userStore.token)
 </script>
 
 <template>
