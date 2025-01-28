@@ -93,6 +93,7 @@ const handleLogin = () => {
             type="primary"
             size="large"
             class="login-btn"
+            :disabled="true"
             @click="handleLogin"
           >
             登录
