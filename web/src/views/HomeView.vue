@@ -10,7 +10,7 @@ console.log(userStore.token)
 
 <template>
   <main>
-    <h1>This is an home page</h1>
+    <h1>{{ userStore.mobile }}</h1>
 
     <el-button type="primary">Primary</el-button>
   </main>
