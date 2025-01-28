@@ -3,6 +3,7 @@ import {ref} from 'vue'
 import {ElMessage} from 'element-plus'
 
 import {sendCode} from '@/api/auth'
+import {login} from '@/api/auth'
 
 const mobile = ref('')
 const code = ref('')
@@ -33,9 +34,20 @@ const handleLogin = () => {
     return
   }
 
-  console.log('用户输入的手机号:', mobile.value)
-  console.log('用户输入的验证码:', code.value)
+  // console.log('用户输入的手机号:', mobile.value)
+  // console.log('用户输入的验证码:', code.value)
+
+  login(mobile.value, code.value)
+    .then(res => {
+      console.log('登录成功')
+      ElMessage.success('登录成功')
+    })
+    .catch(error => {
+      ElMessage.error('登录失败')
+    });
+
 }
+
 </script>
 
 <template>
