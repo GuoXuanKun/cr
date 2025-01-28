@@ -8,9 +8,11 @@ const http = axios.create({
 // Request interceptor
 http.interceptors.request.use(
   config => {
+    console.log('请求: ', config)
     return config
   },
   error => {
+    console.error('请求错误: ', error)
     return Promise.reject(error)
   }
 )
@@ -18,9 +20,11 @@ http.interceptors.request.use(
 // Response interceptor
 http.interceptors.response.use(
   response => {
+    console.log('响应: ', response)
     return response.data
   },
   error => {
+    console.error('响应错误: ', error)
     return Promise.reject(error)
   }
 )

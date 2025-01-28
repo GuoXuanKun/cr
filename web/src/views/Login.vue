@@ -20,7 +20,7 @@ const handleGetCode = () => {
   // ElMessage.success('验证码已发送')
   sendCode(mobile.value)
     .then(res => {
-      console.log(res)
+      // console.log(res)
       ElMessage.success('验证码已发送')
     })
     .catch(error => {
@@ -43,7 +43,7 @@ const handleLogin = () => {
 
   login(mobile.value, code.value)
     .then(res => {
-      console.log('登录成功')
+      // console.log('登录成功')
       ElMessage.success('登录成功')
     })
     .catch(error => {
