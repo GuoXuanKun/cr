@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 import {ElMessage} from 'element-plus'
 
 import {sendCode} from '@/api/auth'
@@ -7,6 +7,10 @@ import {login} from '@/api/auth'
 
 const mobile = ref('13512345678')
 const code = ref('')
+
+const isLoginDisabled = computed(() => {
+  return !code.value || code.value.length < 4
+})
 
 const handleGetCode = () => {
   if (!mobile.value || mobile.value.length !== 11) {
@@ -93,7 +97,7 @@ const handleLogin = () => {
             type="primary"
             size="large"
             class="login-btn"
-            :disabled="true"
+            :disabled="isLoginDisabled"
             @click="handleLogin"
           >
             登录
