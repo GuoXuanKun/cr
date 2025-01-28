@@ -5,7 +5,7 @@ import {ElMessage} from 'element-plus'
 import {sendCode} from '@/api/auth'
 import {login} from '@/api/auth'
 
-const mobile = ref('')
+const mobile = ref('13512345678')
 const code = ref('')
 
 const handleGetCode = () => {
@@ -63,7 +63,7 @@ const handleLogin = () => {
           <el-input
             size="large"
             v-model="mobile"
-            placeholder="18012345678"
+            placeholder="请输入手机号"
             maxlength="11"
             :clearable="true"
           />
