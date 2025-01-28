@@ -47,6 +47,7 @@ public class UserController {
     @PostMapping("/login")
     public R<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         LoginResponse user = userService.login(request);
+        user.setToken("123456");
         return R.ok(user);
     }
 
