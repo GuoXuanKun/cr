@@ -1,11 +1,11 @@
 ### test 接口
-GET http://localhost:8081/test
+GET http://localhost:8000/user/test
 
 ### 测试 查询用户数量
-GET http://localhost:8081/count
+GET http://localhost:8000/user/count
 
 ### 测试 用户注册
-POST http://localhost:8081/register
+POST http://localhost:8000/user/register
 Content-Type: application/json
 Accept-Language: en
 
@@ -14,7 +14,7 @@ Accept-Language: en
 }
 
 ### 测试 用户发送验证码
-POST http://localhost:8081/send-code
+POST http://localhost:8000/user/send-code
 Content-Type: application/json
 Accept-Language: en
 
@@ -23,7 +23,7 @@ Accept-Language: en
 }
 
 ### 测试 用户登录 - 用户不存在
-POST http://localhost:8081/login
+POST http://localhost:8000/user/login
 Content-Type: application/json
 Accept-Language: en
 
@@ -32,7 +32,7 @@ Accept-Language: en
 }
 
 ### 测试 用户登录 - 用户不存在 - 发送验证码
-POST http://localhost:8081/send-code
+POST http://localhost:8000/user/send-code
 Content-Type: application/json
 Accept-Language: en
 
@@ -41,7 +41,7 @@ Accept-Language: en
 }
 
 ### 测试 用户登录 - 验证码错误
-POST http://localhost:8081/login
+POST http://localhost:8000/user/login
 Content-Type: application/json
 Accept-Language: en
 
@@ -51,7 +51,7 @@ Accept-Language: en
 }
 
 ### 测试 用户登录 - 验证码正确
-POST http://localhost:8081/login
+POST http://localhost:8000/user/login
 Content-Type: application/json
 Accept-Language: en
 
