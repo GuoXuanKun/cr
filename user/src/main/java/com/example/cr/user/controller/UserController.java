@@ -1,6 +1,7 @@
 package com.example.cr.user.controller;
 
 import com.example.cr.common.response.R;
+import com.example.cr.common.utils.CustomJWTUtils;
 import com.example.cr.user.request.LoginRequest;
 import com.example.cr.user.request.SendCodeRequest;
 import com.example.cr.user.request.UserRequest;
@@ -47,7 +48,7 @@ public class UserController {
     @PostMapping("/login")
     public R<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         LoginResponse user = userService.login(request);
-        user.setToken("123456");
+        user.setToken(CustomJWTUtils.createToken(user.getId(), user.getMobile()));
         return R.ok(user);
     }
 
