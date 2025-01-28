@@ -1,6 +1,9 @@
 <script setup>
 import {ref, computed} from 'vue'
 import {ElMessage} from 'element-plus'
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
 
 import {sendCode} from '@/api/auth'
 import {login} from '@/api/auth'
@@ -45,6 +48,7 @@ const handleLogin = () => {
     .then(res => {
       // console.log('登录成功')
       ElMessage.success('登录成功')
+      router.push('/')
     })
     .catch(error => {
       ElMessage.error('登录失败')
