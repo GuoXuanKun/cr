@@ -2,8 +2,10 @@
 import {ref, computed} from 'vue'
 import {ElMessage} from 'element-plus'
 import {useRouter} from 'vue-router'
+import {useUserStore} from '@/stores/user'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 import {sendCode} from '@/api/auth'
 import {login} from '@/api/auth'
@@ -47,6 +49,7 @@ const handleLogin = () => {
   login(mobile.value, code.value)
     .then(res => {
       // console.log('登录成功')
+      userStore.setUserInfo(res.data)
       ElMessage.success('登录成功')
       router.push('/')
     })
