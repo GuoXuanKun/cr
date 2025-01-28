@@ -62,7 +62,7 @@ const handleLogin = () => {
         <h1 class="title">CR APP</h1>
       </div>
 
-      <el-form class="login-form">
+      <el-form class="login-form" @keyup.enter="handleLogin">
         <el-form-item>
           <el-input
             size="large"
