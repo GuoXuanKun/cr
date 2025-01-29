@@ -48,10 +48,10 @@ router.beforeEach((to, from, next) => {
   }
 
   // 如果已登录且要访问登录页，重定向到首页
-  if (to.path === '/login' && userStore.token) {
-    next({ path: '/' })
-    return
-  }
+  // if (to.path === '/login' && userStore.token) {
+  //   next({ path: '/' })
+  //   return
+  // }
 
   next()
 })
