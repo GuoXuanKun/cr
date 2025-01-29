@@ -1,4 +1,4 @@
-package com.example.cr.common.utils;
+package com.example.cr.common.util;
 
 import cn.hutool.core.util.IdUtil;
 

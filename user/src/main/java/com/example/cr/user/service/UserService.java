@@ -3,7 +3,7 @@ package com.example.cr.user.service;
 import com.example.cr.common.exception.CommonBusinessException;
 import com.example.cr.common.exception.UserAlreadyExistsException;
 import com.example.cr.common.exception.UserNotExistsException;
-import com.example.cr.common.utils.SnowflakeUtil;
+import com.example.cr.common.util.SnowflakeUtil;
 import com.example.cr.user.request.LoginRequest;
 import com.example.cr.user.request.SendCodeRequest;
 import com.example.cr.user.request.UserRequest;

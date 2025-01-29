@@ -1,7 +1,7 @@
 package com.example.cr.user.controller;
 
 import com.example.cr.common.response.R;
-import com.example.cr.common.utils.CustomJWTUtils;
+import com.example.cr.common.util.CustomJWTUtils;
 import com.example.cr.user.request.LoginRequest;
 import com.example.cr.user.request.SendCodeRequest;
 import com.example.cr.user.request.UserRequest;
