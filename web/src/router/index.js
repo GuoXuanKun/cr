@@ -22,6 +22,12 @@ const router = createRouter({
           component: () => import('../views/Users.vue'),
           meta: { title: '用户管理' }
         },
+/*        {
+          path: 'roles',
+          name: 'Roles',
+          component: () => import('../views/Roles.vue'),
+          meta: { title: '角色管理' }
+        }*/
       ]
     },
     {
