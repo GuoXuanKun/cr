@@ -22,7 +22,7 @@ public class LoginFilter implements GlobalFilter, Ordered {
         String path = exchange.getRequest().getURI().getPath();
         if (path.contains("/test")
                 || path.contains("/register")
-//                || path.contains("/send-code")
+                || path.contains("/send-code")
                 || path.contains("/login")) {
             log.info("不需要登录验证 URL={}", path);
             return chain.filter(exchange);
