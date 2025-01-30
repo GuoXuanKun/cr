@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {useUserStore} from "@/stores/user";
+import router from "@/router";
 
 const http = axios.create({
   baseURL: "http://localhost:8000",
@@ -31,6 +32,16 @@ http.interceptors.response.use(
   },
   error => {
     console.error('响应错误: ', error)
+
+    // 如果是 401 未授权错误（未登录或 token 失效）
+    if (error.response?.status === 401) {
+      const userStore = useUserStore()
+      // 清除用户信息
+      userStore.clearUserInfo()
+      // 跳转到登录页
+      router.push('/login')
+    }
+
     return Promise.reject(error)
   }
 )
