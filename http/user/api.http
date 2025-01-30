@@ -1,8 +1,12 @@
 ### test 接口
 GET http://localhost:8000/user/test
 
-### 测试 查询用户数量
+
+### 测试 查询用户数量 - 经过网关
 GET http://localhost:8000/user/count
+
+### 测试 查询用户数量 - 不经过网关
+GET http://localhost:8081/count
 
 ### 测试 用户注册
 POST http://localhost:8000/user/register
