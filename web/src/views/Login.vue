@@ -51,7 +51,7 @@ const handleLogin = () => {
       // console.log('登录成功')
       userStore.setUserInfo(res.data)
       ElMessage.success('登录成功')
-      router.push('/')
+      router.push('/dashboard')
     })
     .catch(error => {
       ElMessage.error('登录失败')
