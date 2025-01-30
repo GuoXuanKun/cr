@@ -34,15 +34,34 @@
 <script setup>
 import { CaretTop, CaretBottom } from '@element-plus/icons-vue'
 
+import { ref, onMounted } from 'vue'
+import { getUserCount } from '@/api/user'
+
 defineOptions({
   name: 'Dashboard'
 })
+
+const totalUsers = ref('0')
+
+onMounted(() => {
+  fetchUserCount()
+})
+
+// 获取用户总数
+const fetchUserCount = async () => {
+  try {
+    const res = await getUserCount()
+    totalUsers.value = res.data.toString()
+  } catch (error) {
+    console.error('获取用户数失败:', error)
+  }
+}
 
 // 卡片数据
 const cardData = [
   {
     title: '总用户数',
-    value: '1,234',
+    value: totalUsers,
     tag: { type: 'success', text: '月' },
     compare: { label: '同比上月', value: 12, trend: 'up' }
   },
