@@ -118,6 +118,10 @@ import {
   ArrowDown
 } from '@element-plus/icons-vue'
 
+import {useUserStore} from "@/stores/user";
+
+const userStore = useUserStore()
+
 const router = useRouter()
 const isCollapse = ref(false)
 const isDropdownVisible = ref(false)
@@ -143,7 +147,11 @@ onBeforeUnmount(() => {
 })
 
 const handleLogout = () => {
-  console.log('点击了退出登录')
+  // 清除用户信息
+  userStore.clearUserInfo()
+
+  // 跳转到登录页
+  router.push('/login')
 }
 
 // 将菜单配置抽离
