@@ -1,128 +1,189 @@
 <template>
-  <el-container class="layout-container-demo" style="height: 500px">
-    <el-aside width="200px">
-      <el-scrollbar>
-        <el-menu :default-openeds="['1', '3']">
-          <el-sub-menu index="1">
-            <template #title>
-              <el-icon><message /></el-icon>Navigator One
-            </template>
-            <el-menu-item-group>
-              <template #title>Group 1</template>
-              <el-menu-item index="1-1">Option 1</el-menu-item>
-              <el-menu-item index="1-2">Option 2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group 2">
-              <el-menu-item index="1-3">Option 3</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-              <template #title>Option4</template>
-              <el-menu-item index="1-4-1">Option 4-1</el-menu-item>
-            </el-sub-menu>
-          </el-sub-menu>
-          <el-sub-menu index="2">
-            <template #title>
-              <el-icon><icon-menu /></el-icon>Navigator Two
-            </template>
-            <el-menu-item-group>
-              <template #title>Group 1</template>
-              <el-menu-item index="2-1">Option 1</el-menu-item>
-              <el-menu-item index="2-2">Option 2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group 2">
-              <el-menu-item index="2-3">Option 3</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="2-4">
-              <template #title>Option 4</template>
-              <el-menu-item index="2-4-1">Option 4-1</el-menu-item>
-            </el-sub-menu>
-          </el-sub-menu>
-          <el-sub-menu index="3">
-            <template #title>
-              <el-icon><setting /></el-icon>Navigator Three
-            </template>
-            <el-menu-item-group>
-              <template #title>Group 1</template>
-              <el-menu-item index="3-1">Option 1</el-menu-item>
-              <el-menu-item index="3-2">Option 2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group 2">
-              <el-menu-item index="3-3">Option 3</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="3-4">
-              <template #title>Option 4</template>
-              <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
-            </el-sub-menu>
-          </el-sub-menu>
-        </el-menu>
-      </el-scrollbar>
-    </el-aside>
-
-    <el-container>
-      <el-header style="text-align: right; font-size: 12px">
-        <div class="toolbar">
-          <el-dropdown>
-            <el-icon style="margin-right: 8px; margin-top: 1px">
-              <setting />
-            </el-icon>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>View</el-dropdown-item>
-                <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-          <span>Tom</span>
+  <div class="dashboard">
+    <div class="cards-grid">
+      <el-card
+        v-for="(card, index) in cardData"
+        :key="index"
+        shadow="hover"
+        class="data-card"
+      >
+        <template #header>
+          <div class="card-header">
+            <span>{{ card.title }}</span>
+            <el-tag :type="card.tag.type" effect="plain">{{ card.tag.text }}</el-tag>
+          </div>
+        </template>
+        <div class="card-body">
+          <div class="number">{{ card.value }}</div>
+          <div class="compare">
+            <span class="label">{{ card.compare.label }}</span>
+            <span :class="['value', card.compare.trend]">
+              <el-icon>
+                <CaretTop v-if="card.compare.trend === 'up'" />
+                <CaretBottom v-else />
+              </el-icon>
+              {{ card.compare.value }}%
+            </span>
+          </div>
         </div>
-      </el-header>
-
-      <el-main>
-        <el-scrollbar>
-          <el-table :data="tableData">
-            <el-table-column prop="date" label="Date" width="140" />
-            <el-table-column prop="name" label="Name" width="120" />
-            <el-table-column prop="address" label="Address" />
-          </el-table>
-        </el-scrollbar>
-      </el-main>
-    </el-container>
-  </el-container>
+      </el-card>
+    </div>
+  </div>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
-import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+<script setup>
+import { CaretTop, CaretBottom } from '@element-plus/icons-vue'
 
-const item = {
-  date: '2016-05-02',
-  name: 'Tom',
-  address: 'No. 189, Grove St, Los Angeles',
-}
-const tableData = ref(Array.from({ length: 20 }).fill(item))
+defineOptions({
+  name: 'Dashboard'
+})
+
+// 卡片数据
+const cardData = [
+  {
+    title: '总用户数',
+    value: '1,234',
+    tag: { type: 'success', text: '月' },
+    compare: { label: '同比上月', value: 12, trend: 'up' }
+  },
+  {
+    title: '今日访问',
+    value: '234',
+    tag: { type: 'warning', text: '日' },
+    compare: { label: '同比昨日', value: 5, trend: 'down' }
+  },
+  {
+    title: '订单数',
+    value: '89',
+    tag: { type: 'info', text: '周' },
+    compare: { label: '同比上周', value: 8, trend: 'up' }
+  },
+  {
+    title: '活跃度',
+    value: '92%',
+    tag: { type: 'danger', text: '实时' },
+    compare: { label: '同比昨日', value: 3, trend: 'up' }
+  }
+]
 </script>
 
 <style scoped>
-.layout-container-demo .el-header {
-  position: relative;
-  background-color: var(--el-color-primary-light-7);
-  color: var(--el-text-color-primary);
+/* 使用 CSS 变量统一管理主题色 */
+:root {
+  --primary-color: #409EFF;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+  --info-color: #909399;
 }
-.layout-container-demo .el-aside {
-  color: var(--el-text-color-primary);
-  background: var(--el-color-primary-light-8);
+
+.dashboard {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
 }
-.layout-container-demo .el-menu {
-  border-right: none;
+
+@media screen and (max-width: 768px) {
+  .dashboard {
+    gap: 10px;
+    padding: 10px;
+  }
 }
-.layout-container-demo .el-main {
-  padding: 0;
+
+/* 添加加载动画 */
+.data-card {
+  animation: card-in 0.3s ease-out;
 }
-.layout-container-demo .toolbar {
-  display: inline-flex;
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.data-card {
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.data-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  height: 100%;
-  right: 20px;
+}
+
+.card-body {
+  padding: 20px 0;
+}
+
+.number {
+  font-size: 36px;
+  font-weight: 500;
+  color: #303133;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.compare {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.label {
+  color: #909399;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+}
+
+.value.up {
+  color: #67c23a;
+}
+
+.value.down {
+  color: #f56c6c;
+}
+
+.el-icon {
+  margin-right: 4px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard {
+    padding: 10px;
+  }
+
+  .number {
+    font-size: 28px;
+  }
 }
 </style>
