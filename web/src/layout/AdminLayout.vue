@@ -115,7 +115,8 @@ import {
   SwitchButton,
   Fold,
   Expand,
-  ArrowDown
+  ArrowDown,
+  Avatar
 } from '@element-plus/icons-vue'
 
 import {useUserStore} from "@/stores/user";
@@ -160,6 +161,10 @@ const menuConfig = [
     path: '/dashboard',
     title: '仪表盘',
     icon: Monitor
+  },  {
+    path: '/passenger',
+    title: '乘车人管理',
+    icon: Avatar
   },
   {
     title: '系统管理',

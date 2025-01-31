@@ -15,6 +15,11 @@ const router = createRouter({
           name: 'Dashboard',
           component: () => import('../views/Dashboard.vue'),
           meta: { title: '仪表盘' }
+        },        {
+          path: 'passenger',
+          name: 'Passenger',
+          component: () => import('../views/Passenger.vue'),
+          meta: { title: '乘车人管理' }
         },
         {
           path: 'users',
