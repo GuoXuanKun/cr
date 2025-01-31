@@ -41,5 +41,6 @@
                              type="XMLMAPPER"/>
         <!-- 表名 -> 类名-->
         <table tableName="cr_user" domainObjectName="User"/>
+        <table tableName="cr_passenger" domainObjectName="Passenger"/>
     </context>
 </generatorConfiguration>
