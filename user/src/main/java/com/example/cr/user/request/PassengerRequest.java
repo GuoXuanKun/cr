@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 public class PassengerRequest {
-    @NotNull
-    private Long userId;
 
     @NotEmpty(message = "姓名不能为空")
     private String name;

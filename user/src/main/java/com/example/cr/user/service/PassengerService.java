@@ -22,6 +22,8 @@ public class PassengerService {
         Date time = new Date();
         passenger.setCreateTime(time);
         passenger.setUpdateTime(time);
+        // 以及前端没提供的 userId 字段
+//        passenger.setUserId(当前登录用户的 userId);
 
         passengerMapper.insert(passenger);
     }
