@@ -1,11 +1,11 @@
 package com.example.cr.user.controller;
 
+import com.example.cr.common.response.LoginResponse;
 import com.example.cr.common.response.R;
 import com.example.cr.common.util.CustomJWTUtils;
 import com.example.cr.user.request.LoginRequest;
 import com.example.cr.user.request.SendCodeRequest;
 import com.example.cr.user.request.UserRequest;
-import com.example.cr.user.response.LoginResponse;
 import com.example.cr.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

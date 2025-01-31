@@ -1,4 +1,4 @@
-package com.example.cr.user.response;
+package com.example.cr.common.response;
 
 import lombok.Getter;
 import lombok.Setter;
