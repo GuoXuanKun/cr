@@ -1,6 +1,7 @@
 package com.example.cr.user.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.example.cr.common.context.UserContext;
 import com.example.cr.common.util.SnowflakeUtil;
 import com.example.cr.user.entity.Passenger;
 import com.example.cr.user.mapper.PassengerMapper;
@@ -23,7 +24,7 @@ public class PassengerService {
         passenger.setCreateTime(time);
         passenger.setUpdateTime(time);
         // 以及前端没提供的 userId 字段
-//        passenger.setUserId(当前登录用户的 userId);
+        passenger.setUserId(UserContext.getId());
 
         passengerMapper.insert(passenger);
     }
